@@ -17,6 +17,12 @@
   margin-top: calc(0px - 1.5rem - 6px);
 }
 
+.profile strong {
+  margin-top: 1rem;
+  color: var(--gray-100);
+  line-height: 1.6;
+}
+
 .avatar {
   box-sizing: initial;
   width: 3rem;
@@ -26,10 +32,10 @@
   outline: 2px solid var(--green-500);
 }
 
-.sdebar footer {
+.sidebar footer {
   border-top: 1px solid var(--gray-600);
   margin-top: 1.5rem;
-  padding: 1.5rem 2rem 2rem
+  padding: 1.5rem 2rem 2rem;
 }
 
 .sidebar footer a {
