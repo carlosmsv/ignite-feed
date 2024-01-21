@@ -1,4 +1,5 @@
 import styles from './Sidebar.module.css';
+import { PiPencilLine } from "react-icons/pi";
 
 export function Sidebar() {
   return (
@@ -14,6 +15,7 @@ export function Sidebar() {
       </div>
       <footer>
         <a href='#'>
+          <PiPencilLine size={20}/>
           Editar seu perfil
         </a>
       </footer>

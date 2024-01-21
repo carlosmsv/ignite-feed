@@ -23,6 +23,12 @@
   line-height: 1.6;
 }
 
+.profile span {
+  font-size: 0.875rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
 .avatar {
   box-sizing: initial;
   width: 3rem;
@@ -48,6 +54,7 @@
   font-weight: bold;
   text-decoration: none;
   display: flex;
+  gap: 0.5rem;
   align-items: center;
   justify-content: center;
 }
