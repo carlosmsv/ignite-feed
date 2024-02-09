@@ -1,3 +1,4 @@
+import { PiThumbsUp, PiTrash } from "react-icons/pi"
 import styles from './Comment.module.css'
 
 export function Comment() {
@@ -12,9 +13,19 @@ export function Comment() {
               <time title="21 de Janeiro às 14:20h" dateTime="2024-01-21 14:20:00" className={styles.date}>Cerca de 1h atrás</time>
             </div>
 
+            <button title="Deletar comentário">
+              <PiTrash size={20} />
+            </button>
+
           </header>
           <p>Very well, Dev, congratulations!! 👏👏</p>
-        </div>      
+        </div>   
+        <footer>
+            <button>
+              <PiThumbsUp />
+              Aplaudir <span>20</span>
+            </button>
+        </footer>   
       </div>
     </div>
   )
