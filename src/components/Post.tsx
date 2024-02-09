@@ -23,8 +23,8 @@ export function Post(props: Props) {
                 <p>👉 <a href="">github.com/carlosmsv</a></p>
 
                 <p>
-                    <a href="">#newproject</a>
-                    <a href="">#rocketseat</a>
+                    <a href=""> #newproject</a>
+                    <a href=""> #rocketseat</a>
                 </p>
             </div>
         </article>
