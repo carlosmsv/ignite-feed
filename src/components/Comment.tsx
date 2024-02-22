@@ -14,7 +14,7 @@ export function Comment() {
             </div>
 
             <button title="Deletar comentário">
-              <PiTrash size={20} />
+              <PiTrash size={24} />
             </button>
 
           </header>
