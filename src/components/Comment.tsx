@@ -1,10 +1,11 @@
 import { PiThumbsUp, PiTrash } from "react-icons/pi"
 import styles from './Comment.module.css'
+import { Avatar } from "./Avatar"
 
 export function Comment() {
   return(
     <div className={styles.comment}>
-      <img src="https://github.com/carlosmsv.png" alt="" />
+      <Avatar src="https://github.com/carlosmsv.png" alt="" />
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
