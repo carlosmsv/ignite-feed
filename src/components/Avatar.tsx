@@ -7,9 +7,10 @@ type Props = {
 }
 
 export function Avatar({src, alt, hasBorder = true}: Props) {
+  const borderClass = hasBorder ? styles.avatarWithBorder : styles.avatar
   return (
     <img 
-      className={hasBorder ? styles.avatarWithBorder : styles.avatar} 
+      className={borderClass} 
       src={src} alt={alt} 
     />
   )
