@@ -1,33 +1,43 @@
 import { Avatar } from "./Avatar"
 import { Comment } from "./Comment"
 import styles from './Post.module.css'
+import { Author, Content } from '../types'
+import { format, formatDistanceToNow } from "date-fns"
+import { ptBR } from 'date-fns/locale/pt-BR'
 
-type Props = {author: string, content:string}
+type Props = {author: Author, content: Content, publishedAt:Date}
 
-export function Post(props: Props) {
+export function Post({author, content, publishedAt}: Props) {
+    const publishedDateFormatted = format(publishedAt,"d 'de' LLLL 'às' HH:mm'h'", { 
+			locale: ptBR,     
+		})
+
+		const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, { 
+			locale: ptBR,
+			addSuffix: true,
+		})
+
     return (
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
-                    <Avatar src="https://github.com/carlosmsv.png"/>
+                    <Avatar src={author.avatarUrl}/>
                     <div className={styles.authorInfo}>
-                        <strong>{props.author}</strong>
-                        <span>Web Developer</span>
+                        <strong>{author.name}</strong>
+                        <span>{author.role}</span>
                     </div>
                 </div>
-                <time title="21 de Janeiro às 14:20h" dateTime="2024-01-21 14:20:00" className={styles.date}>Publicado há 1h</time>
+                <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()} className={styles.date}>{publishedDateRelativeToNow}</time>
             </header>
             <div className={styles.content}>
-                <p>Hey y'all 👋</p>
-
-                <p>I just posted another project on GitHub.</p>
-
-                <p>👉 <a href="">github.com/carlosmsv</a></p>
-
-                <p>
-                    <a href=""> #newproject</a>
-                    <a href=""> #rocketseat</a>
-                </p>
+                {content.map( line => {
+									if (line.type === 'paragraph') {
+										return <p>{line.content}</p>
+									}
+									if (line.type === 'link') {
+										return <p><a href="#">{line.content}</a></p>
+									}
+								})}
             </div>
 
             <form className= {styles.commentForm}>
