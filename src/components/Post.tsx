@@ -48,12 +48,12 @@ export function Post({author, content, publishedAt}: Props) {
         <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()} className={styles.date}>{publishedDateRelativeToNow}</time>
       </header>
       <div className={styles.content}>
-        {content.map( line => {
+        {content.map(line => {
           if (line.type === 'paragraph') {
-            return <p>{line.content}</p>
+            return <p key={line.content}>{line.content}</p>
           }
           if (line.type === 'link') {
-            return <p><a href="#">{line.content}</a></p>
+            return <p key={line.content}><a href="#">{line.content}</a></p>
           }
       })}
       </div>
@@ -74,7 +74,12 @@ export function Post({author, content, publishedAt}: Props) {
 
       <div className={styles.commentList}>
         {comments.map(comment => {
-          return <Comment content={comment} />
+          return (
+            <Comment 
+              key={comment}
+              content={comment} 
+            />
+          )
         })}
       </div>
     </article>
