@@ -35,6 +35,13 @@ export function Post({author, content, publishedAt}: Props) {
     setNewCommentText(element.value)
   }
 
+  function deleteComment(commentToDelete: string){
+    const commentsWithoutDeletedOne = comments.filter(comment => { 
+      return comment !== commentToDelete
+    })
+    setComments(commentsWithoutDeletedOne)
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -77,7 +84,8 @@ export function Post({author, content, publishedAt}: Props) {
           return (
             <Comment 
               key={comment}
-              content={comment} 
+              content={comment}
+              onDeleteComment={deleteComment}
             />
           )
         })}

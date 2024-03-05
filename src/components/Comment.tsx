@@ -4,9 +4,14 @@ import { Avatar } from "./Avatar"
 
 type Props = {
   content: string
+  onDeleteComment: (content: string) => void
 }
 
-export function Comment({content}: Props) {
+export function Comment({content, onDeleteComment}: Props) {
+  function handleDeleteComment() {
+    onDeleteComment(content)
+  }
+
   return(
     <div className={styles.comment}>
       <Avatar hasBorder={false} src="https://github.com/carlosmsv.png" alt="" />
@@ -18,7 +23,9 @@ export function Comment({content}: Props) {
               <time title="21 de Janeiro às 14:20h" dateTime="2024-01-21 14:20:00" className={styles.date}>Cerca de 1h atrás</time>
             </div>
 
-            <button title="Deletar comentário">
+            <button 
+              onClick={handleDeleteComment}
+              title="Deletar comentário">
               <PiTrash size={24} />
             </button>
 
