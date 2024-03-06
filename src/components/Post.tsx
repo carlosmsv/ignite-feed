@@ -31,8 +31,14 @@ export function Post({author, content, publishedAt}: Props) {
   }
 
   function handleNewCommentChange() {
-    const element = event.target as HTMLInputElement
+    const element = event?.target as HTMLInputElement
+    element.setCustomValidity("")
     setNewCommentText(element.value)
+  }
+
+  function handleNewCommentInvalid(){
+    const element = event?.target as HTMLInputElement
+    element.setCustomValidity("Por favor, digite seu comentário.")
   }
 
   function deleteComment(commentToDelete: string){
@@ -41,6 +47,8 @@ export function Post({author, content, publishedAt}: Props) {
     })
     setComments(commentsWithoutDeletedOne)
   }
+
+  const isNewCommentEmpty = newCommentText.length === 0
 
   return (
     <article className={styles.post}>
@@ -73,9 +81,17 @@ export function Post({author, content, publishedAt}: Props) {
           placeholder="Deixe um comentário"
           value={newCommentText}
           onChange={handleNewCommentChange}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
+
         <footer>
-          <button type="submit">Publicar</button>
+          <button 
+            type="submit"
+            disabled={isNewCommentEmpty}
+          >
+            Publicar
+          </button>
         </footer>
       </form>
 
