@@ -4,11 +4,16 @@ import styles from './Post.module.css'
 import { Author, Content } from '../types'
 import { format, formatDistanceToNow } from "date-fns"
 import { ptBR } from 'date-fns/locale/pt-BR'
-import { useState } from "react"
+import { FormEvent, ChangeEvent, useState, InvalidEvent } from "react"
 
-type Props = {author: Author, content: Content, publishedAt:Date}
+export type PostType = {
+  id: number,
+  author: Author, 
+  content: Content, 
+  publishedAt:Date
+}
 
-export function Post({author, content, publishedAt}: Props) {
+export function Post({author, content, publishedAt}: PostType) {
   const [comments, setComments] = useState([
     'Very well, Dev. Congratulations!! 👏👏'
   ])
@@ -24,21 +29,19 @@ export function Post({author, content, publishedAt}: Props) {
     addSuffix: true,
   })
 
-  function handleCreateNewComment() {
+  function handleCreateNewComment(event: FormEvent) {
     event?.preventDefault()
     setComments([...comments, newCommentText])
     setNewCommentText('')
   }
 
-  function handleNewCommentChange() {
-    const element = event?.target as HTMLInputElement
-    element.setCustomValidity("")
-    setNewCommentText(element.value)
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    event.target.setCustomValidity("")
+    setNewCommentText(event.target.value)
   }
 
-  function handleNewCommentInvalid(){
-    const element = event?.target as HTMLInputElement
-    element.setCustomValidity("Por favor, digite seu comentário.")
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>){
+    event.target.setCustomValidity("Por favor, digite seu comentário.")
   }
 
   function deleteComment(commentToDelete: string){
