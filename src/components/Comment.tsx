@@ -16,7 +16,9 @@ export function Comment({content, onDeleteComment}: Props) {
   }
 
   function handleApplauses(){
-    setApplauseCount(applauseCount + 1)
+    setApplauseCount((state) => {
+      return state + 1
+    })
   }
 
   return(
