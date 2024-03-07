@@ -1,6 +1,7 @@
-import { PiThumbsUp, PiTrash } from "react-icons/pi"
+import { PiHandsClapping, PiTrash } from "react-icons/pi"
 import styles from './Comment.module.css'
 import { Avatar } from "./Avatar"
+import { useState } from "react"
 
 type Props = {
   content: string
@@ -8,8 +9,14 @@ type Props = {
 }
 
 export function Comment({content, onDeleteComment}: Props) {
+  const [applauseCount, setApplauseCount] = useState(0)
+
   function handleDeleteComment() {
     onDeleteComment(content)
+  }
+
+  function handleApplauses(){
+    setApplauseCount(applauseCount + 1)
   }
 
   return(
@@ -33,9 +40,9 @@ export function Comment({content, onDeleteComment}: Props) {
           <p>{content}</p>
         </div>   
         <footer>
-            <button>
-              <PiThumbsUp />
-              Aplaudir <span>20</span>
+            <button onClick={handleApplauses}>
+              <PiHandsClapping />
+              Aplaudir <span>{applauseCount}</span>
             </button>
         </footer>   
       </div>
